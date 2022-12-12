@@ -1,0 +1,11 @@
+default:
+  tag:
+    localrunner
+stages:
+  - build
+
+build job:
+  stage: build
+  script:
+    - docker build -t moqaddas/authapp:$version .
+
