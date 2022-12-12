@@ -3,9 +3,30 @@ default:
     - localrunner
 stages:
   - build
-
+  - test
+  - registery
 build job:
   stage: build
   script:
     - docker build -t moqaddas/authapp:$version .
+
+running test:
+  stage: test
+  script:
+    - curl --silent localhost | grep Login
+login page test:
+  stage: test
+  script:
+    - curl --silent localhost | grep Login
+signup Page test:
+  stage: test
+  script:
+    -  curl --silent localhost/signup | grep Signup
+
+container registery:
+  stage: registery
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker push moqaddas/authapp:$version
 
