@@ -2,7 +2,7 @@ FROM node
 
 WORKDIR /myapp
 
-COPY * .
+COPY * ./
 
 COPY views/ /myapp/views/
 
